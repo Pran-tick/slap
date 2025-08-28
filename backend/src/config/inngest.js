@@ -2,6 +2,7 @@
 
 import { Inngest } from "inngest";
 import { connectDB } from "./db.js";
+import { User } from "../models/user.model.js";
 
 // Create a client to send and receive events
 export const inngest = new Inngest({ id: "slack-clone" });
@@ -32,6 +33,7 @@ const deleteUserFromDB = inngest.createFunction(
     { id: 'delete-user' },
     { event: 'clerk/user.deleted' },
     async ({ event }) => {
+        await connectDB();
         // Handle the event and delete the user from the database
         const { id } = event.data;
         //the below function deletes a user from our database
