@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import "../styles/auth.css";
 import { SignInButton } from "@clerk/clerk-react";
 
