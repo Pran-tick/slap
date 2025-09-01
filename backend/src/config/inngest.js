@@ -31,8 +31,9 @@ const syncUser = inngest.createFunction(
         await upsertStreamUser({
             id: newUser.clerkId.toString(),
             name: newUser.name,
-            image: newUser.image 
+            image: newUser.image
         })
+        await addUserToPublicChannels(newUser.clerkId.toString());
     }
 );
 
