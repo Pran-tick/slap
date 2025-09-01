@@ -6,12 +6,12 @@ import {clerkMiddleware} from '@clerk/express'
 import { functions, inngest } from './config/inngest.js';
 import { serve } from 'inngest/express';
 import chatRoutes from './routes/chat.route.js';
-
+import cors from 'cors';
 import * as Sentry from "@sentry/node"
 
 const app = express();
 app.use(express.json()); //this middleware allows to parse JSON request bodies req.body
-
+app.use(cors({ origin: 'http://localhost:5173/', credentials:true })); // Adjust the origin as needed
 app.use(clerkMiddleware());
 
 app.get('/debug-sentry', (req, res) => {
